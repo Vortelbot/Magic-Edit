@@ -69,8 +69,16 @@
   }
 }
 </script>
+<script>
+  // Verhindert Abstürze in Browser-Umgebungen, die process.env nicht automatisch bereitstellen
+  if (typeof window !== 'undefined') {
+    window.process = window.process || { env: {} };
+  }
+</script>
 </head>
 <body>
   <div id="root"></div>
+  <!-- Das ist entscheidend für Vite/Vercel: Der Link zur Haupt-Datei -->
+  <script type="module" src="/index.tsx"></script>
 </body>
 </html>
